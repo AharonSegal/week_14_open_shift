@@ -7,8 +7,6 @@ from app.db import init_db, insert_weapons
 
 app = FastAPI(title="Weapon Warehouse Intelligence System")
 
-print("=============STARTING====APP=========")
-
 @app.on_event("startup")
 def on_startup():
     # initialize db on startup
