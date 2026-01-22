@@ -1,19 +1,17 @@
+# image
 docker build -t aharonsegal/weapon-warehouse-api:latest .
 docker push aharonsegal/weapon-warehouse-api:latest
 
-kubectl apply -f k8s/
-kubectl delete -f k8s/
+# create
+oc apply -f k8s/
+oc delete -f k8s/
 
-minikube service weapon-api-service
-
-kubectl get pods
-kubectl get svc
-
-# for openshift users
-oc apply -f k8s/mysql-statefulset.yaml
-oc apply -f k8s/mysql-service.yaml
-oc apply -f k8s/api-deployment.yaml
-oc apply -f k8s/api-service.yaml
-
+# check
 oc get pods
 oc get svc
+
+# expose 
+oc expose svc/weapon-api-service
+
+# get route
+oc get route

@@ -4,7 +4,7 @@ metadata:
   name: mysql
 spec:
   serviceName: mysql-service
-  replicas: 1 #TODO : CHANGE TO 2 
+  replicas: 2
   selector:
     matchLabels:
       app: mysql
@@ -17,7 +17,7 @@ spec:
         - name: mysql
           image: mysql:8.0
           ports:
-            - containerPort: 3307
+            - containerPort: 3306
           env:
             - name: MYSQL_ROOT_PASSWORD
               value: "password"
@@ -28,5 +28,4 @@ spec:
               mountPath: /var/lib/mysql
       volumes:
         - name: mysql-data
-          emptyDir: {} #TODO: check this 
 

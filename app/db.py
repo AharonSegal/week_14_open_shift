@@ -3,8 +3,11 @@ import mysql.connector
 
 def connect():
     return mysql.connector.connect(
+        # TODO: remove in production
+        # host=os.getenv("DB_HOST", "127.0.0.1"),
+        # TODO: CAHNGE at production
         host=os.getenv("DB_HOST", "mysql-service"),
-        port=int(os.getenv("DB_PORT", "3306")),  #
+        port=int(os.getenv("DB_PORT", "3306")),  
         user=os.getenv("DB_USER", "root"),
         password=os.getenv("DB_PASSWORD", "password"),
         database=os.getenv("DB_NAME", "weapons_db"),
