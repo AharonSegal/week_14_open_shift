@@ -1,7 +1,6 @@
 import os
 import mysql.connector
 
-
 def connect(database: str | None = None):
     return mysql.connector.connect(
         host=os.getenv("DB_HOST", "mysql-service"),
@@ -48,7 +47,6 @@ def init_db():
 
 def insert_weapons(dict_list):
     # insert dict_list to db
-
     connection = connect()
     cursor = connection.cursor()
 

@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weapon-api-deployment
+spec:
+  replicas:  1 #TODO : CHANGE TO 2 
+  selector:
+    matchLabels:
+      app: weapon-api
+  template:
+    metadata:
+      labels:
+        app: weapon-api
+    spec:
+      containers:
+        - name: weapon-api-container
+          image: aharonsegal/weapon-warehouse-api:latest
+          env:
+            - name: DB_HOST
+              value: "mysql-service"
+            - name: DB_PORT
+              value: "3307"
+            - name: DB_USER
+              value: "root"
+            - name: DB_PASSWORD
+              value: "password"
+            - name: DB_NAME
+              value: "weapons_db"
+          ports:
+            - containerPort: 8000

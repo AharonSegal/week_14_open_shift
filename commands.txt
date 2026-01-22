@@ -1,10 +1,10 @@
-docker build -t your-docker-username/weapon-warehouse-api:latest .
-docker push your-docker-username/weapon-warehouse-api:latest
+docker build -t aharonsegal/weapon-warehouse-api:latest .
+docker push aharonsegal/weapon-warehouse-api:latest
 
-kubectl apply -f k8s/mysql-statefulset.yaml
-kubectl apply -f k8s/mysql-service.yaml
-kubectl apply -f k8s/api-deployment.yaml
-kubectl apply -f k8s/api-service.yaml
+kubectl apply -f k8s/
+kubectl delete -f k8s/
+
+minikube service weapon-api-service
 
 kubectl get pods
 kubectl get svc

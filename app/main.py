@@ -2,18 +2,17 @@ from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.responses import JSONResponse
 import pandas as pd
 import numpy as np
-import io
 
-from app.db import init_db, insert_weapons
+# for local
+# from app.db import init_db, insert_weapons
+from db import init_db, insert_weapons
 
 app = FastAPI(title="Weapon Warehouse Intelligence System")
-
 
 @app.on_event("startup")
 def on_startup():
     # initialize db on startup
     init_db()
-
 
 @app.post("/upload")
 def upload_file(file: UploadFile = File(...)):
