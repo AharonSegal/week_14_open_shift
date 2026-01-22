@@ -1,27 +1,19 @@
 import os
 import mysql.connector
 
-def connect(database: str | None = None):
+def connect():
     return mysql.connector.connect(
         host=os.getenv("DB_HOST", "mysql-service"),
-        port=int(os.getenv("DB_PORT", "3307")),
+        port=int(os.getenv("DB_PORT", "3306")),  #
         user=os.getenv("DB_USER", "root"),
         password=os.getenv("DB_PASSWORD", "password"),
         database=os.getenv("DB_NAME", "weapons_db"),
     )
 
 def init_db():
-    # basic connection  
+    # connect to db
     conn = connect()
 
-    # create the database
-    cursor = conn.cursor()
-    cursor.execute(f"CREATE DATABASE IF NOT EXISTS `{os.getenv("DB_NAME", "weapons_db")}`")
-    cursor.close()
-    conn.close()
-
-    # create teh table
-    conn = connect()
     cursor = conn.cursor()
     cursor.execute(
         """
@@ -67,19 +59,19 @@ def insert_weapons(dict_list):
     """
 
     values = []
-    for dict in dict_list:
+    for item in dict_list:
         values.append(
             (
-                dict["weapon_id"],
-                dict["weapon_name"],
-                dict["weapon_type"],
-                dict["range_km"],
-                dict["weight_kg"],
-                dict["manufacturer"],
-                dict["origin_country"],
-                dict["storage_location"],
-                dict["year_estimated"],
-                dict["level_risk"],
+                item["weapon_id"],
+                item["weapon_name"],
+                item["weapon_type"],
+                item["range_km"],
+                item["weight_kg"],
+                item["manufacturer"],
+                item["origin_country"],
+                item["storage_location"],
+                item["year_estimated"],
+                item["level_risk"],
             )
         )
 

@@ -3,11 +3,11 @@ from fastapi.responses import JSONResponse
 import pandas as pd
 import numpy as np
 
-# for local
-# from app.db import init_db, insert_weapons
-from db import init_db, insert_weapons
+from app.db import init_db, insert_weapons
 
 app = FastAPI(title="Weapon Warehouse Intelligence System")
+
+print("=============STARTING====APP=========")
 
 @app.on_event("startup")
 def on_startup():
